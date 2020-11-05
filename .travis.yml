@@ -9,6 +9,11 @@ matrix:
       env:
        - COMPOSER_ARG=--ignore-platform-reqs
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - if [[ $coverage = 'true' ]]; then ./cc-test-reporter before-build; fi
+
 install:
   - composer install $COMPOSER_ARG
 
